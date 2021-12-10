@@ -2,8 +2,13 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <stdbool.h>
+#include <time.h>
+
+#define TOTALPOINT 1000
 
 int main (int argc, char* argv[]) {
+
+    srand(time(NULL));
 
     if(SDL_Init(SDL_INIT_VIDEO) < 0)
     {
@@ -23,8 +28,6 @@ int main (int argc, char* argv[]) {
         return EXIT_FAILURE;
     }
 
-    char* title = SDL_GetWindowTitle(*pWindow);
-
     while(isOpen)
     {
         while (SDL_PollEvent(&events))
@@ -35,6 +38,12 @@ int main (int argc, char* argv[]) {
                     isOpen = false;
                     break;
             }
+
+            SDL_SetRenderDrawColor(pRenderer, 0, 0, 0, 255);
+            SDL_RenderClear(pRenderer);
+            SDL_SetRenderDrawColor(pRenderer, 255, 0, 0, 255);
+            SDL_RenderDrawPoint(pRenderer, 10, 10);
+            SDL_RenderPresent(pRenderer);
         }
     }
 
