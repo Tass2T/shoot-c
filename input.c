@@ -17,16 +17,19 @@ void getInput()
                 {
                     case SDL_SCANCODE_RIGHT:
                         rect1.x = rect1.x + SPEED;
-                        if (SDL_IntersectRect(&rect1, &rect2,&collisionRectangle)) SDL_Log("collision here");
+                        if (SDL_IntersectRect(&rect1, &rect2,&collisionRectangle)) rect2.x = rect2.x + SPEED;
                         break;
                     case SDL_SCANCODE_LEFT:
                         rect1.x = rect1.x - SPEED;
+                        if (SDL_IntersectRect(&rect1, &rect2,&collisionRectangle)) rect2.x = rect2.x - SPEED;
                         break;
                     case SDL_SCANCODE_DOWN:
                         rect1.y = rect1.y + SPEED;
+                        if (SDL_IntersectRect(&rect1, &rect2,&collisionRectangle)) rect2.y = rect2.y + SPEED;
                         break;
                     case SDL_SCANCODE_UP:
                         rect1.y = rect1.y -SPEED;
+                        if (SDL_IntersectRect(&rect1, &rect2,&collisionRectangle)) rect2.y = rect2.y - SPEED;
                         break;
                     case SDL_SCANCODE_A:
                         isOpen = false;
