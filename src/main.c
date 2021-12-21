@@ -34,3 +34,5 @@ int main (int argc, char* argv[]) {
 
     return EXIT_SUCCESS;
 }
+
+// gcc src/main.c -o bin/prog -I include -L lib -lmingw32 -lSDL2main -lSDL2
