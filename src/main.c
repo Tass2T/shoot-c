@@ -30,3 +30,5 @@ int main (int argc, char* argv[]) {
 }
 
 // gcc src/main.c -o bin/prog -I include -L lib -lmingw32 -lSDL2main -lSDL2
+
+// sous linux : gcc src/*.c -o prog $(sdl2-config --flags --libs) -I include -L lib -lSDL2main -lSDL2
