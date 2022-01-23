@@ -12,26 +12,20 @@ int main (int argc, char* argv[]) {
     int frameTime;
 
     initSDL();
+    initTexture();
 
     while(isOpen)
     {
         frameStart = SDL_GetTicks();
-
-        getInput();
-        drawRectangle();
-
         frameTime = SDL_GetTicks() - frameStart;
 
-        if (frameDelay > frameTime) SDL_Delay(frameDelay - frameTime);
+        displayTexture();
 
+        if (frameDelay > frameTime) SDL_Delay(frameDelay - frameTime);
     }
 
-
-
-    SDL_DestroyRenderer(pRenderer);
-    SDL_DestroyWindow(pWindow);
+    killSDL();
     SDL_Quit();
-
     return EXIT_SUCCESS;
 }
 

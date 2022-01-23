@@ -8,10 +8,15 @@
 #include <time.h>
 
 #define SPEED 10
+#define W_WIDTH 800
+#define W_HEIGHT 600
 
 void getInput();
 int initSDL();
 void drawRectangle ();
+void initTexture ();
+void displayTexture();
+void killSDL();
 
 extern SDL_Window* pWindow;
 extern SDL_Renderer* pRenderer;

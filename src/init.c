@@ -8,7 +8,7 @@ int initSDL()
         return EXIT_FAILURE;
     }
  
-    if (SDL_CreateWindowAndRenderer(800,600, SDL_WINDOW_SHOWN, &pWindow, &pRenderer) < 0)
+    if (SDL_CreateWindowAndRenderer(W_WIDTH,W_HEIGHT, SDL_WINDOW_SHOWN, &pWindow, &pRenderer) < 0)
     {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "[debug] %s", SDL_GetError());
         SDL_Quit(); 
