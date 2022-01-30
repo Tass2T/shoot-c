@@ -1,18 +1,18 @@
 #include "main.h"
 
-SDL_Surface* createAndCheckSurface(char imagePath[])
+SDL_Surface* createAndCheckSurface(char* imagePath)
 {
-    SDL_Surface *surface = NULL;
+    SDL_Surface *image = SDL_LoadBMP(imagePath);
 
-    surface = SDL_LoadBMP(imagePath);
-
-    if(surface == NULL)
+    if(image == NULL)
     {
             killSDL();
-            isOpen = false;
+            printf("Failed to load image at %s: %s\n", imagePath, SDL_GetError());
+            killSDL();
+            exit(1);
     }
 
-    return surface;
+    return image;
 
 }
 
@@ -24,11 +24,10 @@ SDL_Texture* createAndCheckTexture(SDL_Surface* surface)
     if (texture == NULL)
     {
         SDL_FreeSurface(surface);
+        SDL_Log("Problème lors de la création de la texture...");
         killSDL();
-        isOpen = false;
+        exit(1);
     }
-
-    SDL_FreeSurface(surface);
 
     return texture;
 }
@@ -52,10 +51,13 @@ void putTextureToMemory(SDL_Texture* texture)
 
 void initTexture () {
 
-    SDL_Surface *surface1 = createAndCheckSurface("./assets/test.bmp");
+    SDL_Surface *surface1 = createAndCheckSurface("./assets/test2.bmp");
 
+    // if (surface1 == NULL) SDL_Log("mmmmmh");
     SDL_Texture *texture1 = createAndCheckTexture(surface1);
+    SDL_FreeSurface(surface1);
 
+    // if (texture1 == NULL) SDL_Log("Ho ho...");
     // now create the rectangle that will serve as a frame to the texture
     // or just use rect1 from global.c lol
     putTextureToMemory(texture1);

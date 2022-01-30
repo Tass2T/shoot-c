@@ -10,6 +10,7 @@
 #define SPEED 10
 #define W_WIDTH 800
 #define W_HEIGHT 600
+#define TOTALPOINT 1000
 
 void getInput();
 int initSDL();

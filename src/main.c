@@ -1,7 +1,5 @@
 #include "main.h"
 
-#define TOTALPOINT 1000
-
 int main (int argc, char* argv[]) {
 
     srand(time(NULL));
@@ -18,8 +16,8 @@ int main (int argc, char* argv[]) {
     {
         frameStart = SDL_GetTicks();
         frameTime = SDL_GetTicks() - frameStart;
-
-        displayTexture();
+        getInput();
+        drawRectangle();
 
         if (frameDelay > frameTime) SDL_Delay(frameDelay - frameTime);
     }
