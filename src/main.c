@@ -10,15 +10,19 @@ int main (int argc, char* argv[]) {
     int frameTime;
 
     initSDL();
-    initTexture();
 
     while(isOpen)
     {
         frameStart = SDL_GetTicks();
         frameTime = SDL_GetTicks() - frameStart;
+        SDL_RenderClear(pRenderer);
         getInput();
-        drawRectangle();
 
+        // UPDATE GOES HERE
+        setFilledRectangleForTest();
+
+
+        SDL_RenderPresent(pRenderer);
         if (frameDelay > frameTime) SDL_Delay(frameDelay - frameTime);
     }
 

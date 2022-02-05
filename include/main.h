@@ -8,20 +8,24 @@
 #include <time.h>
 
 #define SPEED 10
-#define W_WIDTH 1920
-#define W_HEIGHT 1080
+#define W_WIDTH 1720
+#define W_HEIGHT 880
 #define TOTALPOINT 1000
 
 void getInput();
 int initSDL();
-void drawRectangle ();
-void initTexture ();
-void displayTexture();
 void killSDL();
 
 extern SDL_Window* pWindow;
 extern SDL_Renderer* pRenderer;
+
+// MAIN LOOP
 extern bool isOpen;
+
+// DRAW
+void setFilledRectangleForTest();
+
+// BACKGROUND
 extern SDL_Rect backgroundRect;
 extern SDL_Rect shipRect;
 extern SDL_Texture *background;
