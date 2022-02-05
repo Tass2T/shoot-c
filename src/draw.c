@@ -6,8 +6,8 @@ SDL_Surface* createAndCheckSurface(char* imagePath)
 
     if(image == NULL)
     {
-            killSDL();
             printf("Failed to load image at %s: %s\n", imagePath, SDL_GetError());
+            killSDL();
             killSDL();
             exit(1);
     }
@@ -36,31 +36,32 @@ void putTextureToMemory(SDL_Texture* texture)
 {
     if (SDL_QueryTexture(texture, NULL, NULL, &rect1.w, &rect1.h) != 0)
     {
-        killSDL();
         SDL_Log("petit probleme avec la queryTexture");
+        killSDL();
         isOpen = false;
     }
 
     if (SDL_RenderCopy(pRenderer, texture, NULL, &rect1) != 0)
     {
-        killSDL();
         SDL_Log("Problème avec le rendu de la texture");
+        killSDL();
         isOpen = false;
     }
 }
 
 void initTexture () {
 
-    SDL_Surface *surface1 = createAndCheckSurface("./assets/test2.bmp");
+    SDL_Surface *backgroundSurface = createAndCheckSurface("src/assets/background.bmp");
+    SDL_Surface *shipSurface = createAndCheckSurface("src/assets/ship-beta.bmp");
+    background = createAndCheckTexture(backgroundSurface);
+    ship = createAndCheckTexture(shipSurface);
+    SDL_FreeSurface(backgroundSurface);
+    SDL_FreeSurface(shipSurface);
 
-    // if (surface1 == NULL) SDL_Log("mmmmmh");
-    SDL_Texture *texture1 = createAndCheckTexture(surface1);
-    SDL_FreeSurface(surface1);
-
-    // if (texture1 == NULL) SDL_Log("Ho ho...");
     // now create the rectangle that will serve as a frame to the texture
     // or just use rect1 from global.c lol
-    putTextureToMemory(texture1);
+    putTextureToMemory(background);
+    putTextureToMemory(ship);
     
     
 }
@@ -72,12 +73,7 @@ void displayTexture () {
 // a été créé pour tester les triangles
 void drawRectangle () {
     SDL_RenderClear(pRenderer);
-    SDL_SetRenderDrawColor(pRenderer, 145,13,0,255);
-    SDL_RenderFillRect(pRenderer, &rect1);
-    SDL_SetRenderDrawColor(pRenderer, 30, 125,10,255);
-    SDL_RenderFillRect(pRenderer, &rect2);
-    SDL_SetRenderDrawColor(pRenderer, 0, 0, 0, 255);
-
+    SDL_RenderCopy(pRenderer, texture1, NULL, &rect1);
     SDL_RenderPresent(pRenderer);
 
 }
